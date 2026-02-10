@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IndyHAX â€¢ Cookies</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;max-width:900px;margin:40px auto;padding:0 16px}
+    .card{border:1px solid #ddd;border-radius:12px;padding:18px;background:#fff}
+    .muted{color:#666}
+    code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:2px 6px}
+    #flag{margin-top:12px;padding:12px;border-radius:10px;background:#f6f8fa;border:1px solid #e5e7eb;white-space:pre-wrap}
+  </style>
+</head>
+<body>
+  <h1>IndyHAX CTF â€” Cookies</h1>
+  <div class="card">
+    <p class="muted">This site has a very "secure" admin check.</p>
+    <p>Become admin and the flag will appear.</p>
+    <p class="muted">Hint: cookies.</p>
+    <div id="flag">Not admin.</div>
+  </div>
+
+  <script>
+    // Intentionally vulnerable: client-side authorization based on a cookie.
+    const isAdmin = document.cookie.split(';').map(s=>s.trim()).includes('isAdmin=true');
+    document.querySelector('#flag').textContent = isAdmin ? 'INDYHAX{cookies_arent_auth_if_the_client_checks_them}' : 'Not admin.';
+  </script>
+</body>
+</html>
